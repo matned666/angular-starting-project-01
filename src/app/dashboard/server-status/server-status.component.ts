@@ -11,7 +11,14 @@ import {DashboardItemComponent} from "../dashboard-item/dashboard-item.component
   styleUrl: './server-status.component.css'
 })
 export class ServerStatusComponent {
-  currentStatus = this.getMockStatus();
+  currentStatus = '';
+
+  constructor() {}
+
+  ngOnInit() {
+    this.currentStatus = this.getMockStatus();
+    setInterval(() => {this.currentStatus = this.getMockStatus()}, 5000);
+  }
 
   private getMockStatus() : string{
     let random = Math.floor(Math.random() * 101);
