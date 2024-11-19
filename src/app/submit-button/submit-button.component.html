@@ -1,0 +1,10 @@
+<button>
+          <span>
+            {{ buttonText() }}
+          </span>
+  @if (sign()) {
+    <span [class]=signClass()>
+      {{ sign() }}
+    </span>
+  }
+</button>
