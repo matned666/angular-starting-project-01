@@ -11,5 +11,18 @@ import {DashboardItemComponent} from "../dashboard-item/dashboard-item.component
   styleUrl: './server-status.component.css'
 })
 export class ServerStatusComponent {
-  currentStatus = 'online';
+  currentStatus = this.getMockStatus();
+
+  private getMockStatus() : string{
+    let random = Math.floor(Math.random() * 101);
+    if (random > 66) {
+      return 'online';
+    } else if (random <= 66 && random > 33) {
+      return 'offline';
+    } else {
+      return 'unknown';
+    }
+  }
+
+
 }
