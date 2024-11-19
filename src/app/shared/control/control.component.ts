@@ -1,4 +1,4 @@
-import {Component, HostBinding, input, ViewEncapsulation} from '@angular/core';
+import {Component, HostBinding, HostListener, input, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-control',
@@ -9,14 +9,16 @@ import {Component, HostBinding, input, ViewEncapsulation} from '@angular/core';
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'control',
-  '(click)' : 'onClick()'
+  // '(click)' : 'onClick()'
 
   }
 })
 export class ControlComponent {
   label = input.required<string>();
 
-  onClick() {
+
+
+  @HostListener('click') onClick() {
     console.log('CLICKED!');
   }
 }
