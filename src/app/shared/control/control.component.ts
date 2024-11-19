@@ -1,4 +1,6 @@
 import {
+  afterNextRender,
+  afterRender,
   Component, contentChild,
   ContentChild,
   ElementRef,
@@ -28,6 +30,15 @@ export class ControlComponent {
 
   // @ContentChild('input') private control?: ElementRef<HTMLInputElement | HTMLTextAreaElement>;
   private control = contentChild<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('input');
+
+  constructor(){
+    afterRender(() => {
+      console.log('afterRender - after each render - many times');
+    })
+    afterNextRender(() => {
+      console.log('after next render - only after next render - once');
+    })
+  }
 
   onClick() {
     console.log(this.control()?.nativeElement.value);
