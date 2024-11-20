@@ -44,7 +44,7 @@
   </h3>
 
   @if (detailsVisible()) {
-    <p>{{ ticketData().request }}</p>
+    <p>{{ ticket().request }}</p>
 
     @if (ticket().status === 'open') {
       <p><button (click)="onMarkAscompleted()">Mark as completed</button></p>
