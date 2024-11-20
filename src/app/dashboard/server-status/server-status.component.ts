@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, effect, OnInit, signal} from '@angular/core';
 import {DashboardItemComponent} from "../dashboard-item/dashboard-item.component";
 
 @Component({
@@ -11,16 +11,20 @@ import {DashboardItemComponent} from "../dashboard-item/dashboard-item.component
   styleUrl: './server-status.component.css'
 })
 export class ServerStatusComponent implements OnInit{
-  currentStatus = '';
+  currentStatus = signal(this.getMockStatus());
 
-  constructor() {}
-
-  ngOnInit() {
-    this.currentStatus = this.getMockStatus();
-    setInterval(() => {this.currentStatus = this.getMockStatus()}, 5000);
+  constructor() {
+    effect(() => {
+      console.log("STATUS: " + this.currentStatus());
+    });
   }
 
-  private getMockStatus() : string{
+  ngOnInit() {
+    this.currentStatus.set(this.getMockStatus());
+    setInterval(() => {this.currentStatus.set(this.getMockStatus())}, 5000);
+  }
+
+  private getMockStatus() : 'online' | 'offline' | 'unknown'{
     let random = Math.floor(Math.random() * 101);
     if (random > 66) {
       return 'online';
