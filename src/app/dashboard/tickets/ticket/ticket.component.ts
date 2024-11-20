@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, input, Input, signal} from '@angular/core';
 import { TicketModel } from '../ticket.model';
 
 @Component({
@@ -9,6 +9,11 @@ import { TicketModel } from '../ticket.model';
   styleUrl: './ticket.component.css'
 })
 export class TicketComponent {
-  @Input() ticket!: TicketModel;
+  ticket = input.required<TicketModel>();
+  detailsVisible = signal(false);
+
+  onToggleDetails() {
+    this.detailsVisible.update(wasVisible => !wasVisible);
+  }
 
 }
