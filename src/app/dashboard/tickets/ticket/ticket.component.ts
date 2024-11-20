@@ -9,7 +9,10 @@ import { TicketModel } from '../ticket.model';
   styleUrl: './ticket.component.css'
 })
 export class TicketComponent {
-  ticket = input.required<TicketModel>();
+  ticket = input.required<TicketModel>({
+    alias : 'ticketData', //not recommended
+    // transform: (value) => {null} check it out
+  });
   detailsVisible = signal(false);
   close = output();
 

@@ -2,7 +2,7 @@
   <ul>
     @for (ticket of tickets; track ticket.id) {
       <li>
-        <app-ticket [ticket]="ticket" (close)="onCloseTicket(ticket.id)"/>
+        <app-ticket [ticketData]="ticket" (close)="onCloseTicket(ticket.id)"/>
 <!--        <p>{{$first}}</p>  special @for variables like first can be used in these curly braces-->
       </li>
     } @empty {
